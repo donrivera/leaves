@@ -1,4 +1,6 @@
-<br/>LOG IN:
+<br/>
+<h4>LOG IN:</h4>
+<br/>
 <?php echo validation_errors(); ?>
 <form action="login" method="post">
 <table border="1">

@@ -7,6 +7,7 @@ class Home extends CI_Controller
         $this->load->library('template');
 		$this->load->model('user','',TRUE);
 		$this->load->model('employee','',TRUE);
+		$this->load->model('leave_balance','',TRUE);
 	}
 	public function index()
 	{
@@ -14,17 +15,37 @@ class Home extends CI_Controller
 		$this->template->load('default', '/home/index', $data);
 	}
 	public function inquireLeave()
-	{
+	{	
 		$queries=$this->employee->viewEmp()->result();
 		$data = array('title' => 'Check Leave Balance','queries'=>$queries);
 		$this->template->load('default', '/home/inquire_leave', $data);
 	}
 	public function viewLeave()
-	{
+	{	
+		$form=$this->input->post();
 		$name=$this->input->post('emp_name');
-		$query=$this->employee->getEmp($name)->result();
-		$data = array('title' => 'View Leave Balance','queries'=>$query);
-		$this->template->load('default', '/home/view_leave', $data);
+		$start=$this->input->post('start_date');
+		$end=$this->input->post('end_date');
+		if(empty($name) || empty($start) || empty($end))
+		{
+			$this->session->set_flashdata( 'message', 'Please Complete Fields...' );
+			redirect('home/inquireLeave', 'refresh');
+		}
+		else
+		{	
+			$emp=$this->employee->getIdByFname($name)->row();
+			$vl=$this->leave_balance->viewBalance($emp->id,'VL')->row();
+			$sl=$this->leave_balance->viewBalance($emp->id,'SL')->row();
+			$vl_balance=(empty($vl->balance)? 'N/A' : $vl->balance);
+			$sl_balance=(empty($sl->balance)? 'N/A' : $sl->balance);
+			$query=$this->employee->getEmp($name)->result();
+			$data = array(	'title' => 'View Leave Balance',
+							'queries'=>$query,
+							'form'=>$form,
+							'vl'=>$vl_balance,
+							'sl'=>$sl_balance);
+			$this->template->load('default', '/home/view_leave', $data);
+		}
 	}
 	public function admin()
 	{

@@ -42,11 +42,12 @@
 		<header id="header" class="body">
 		<br/>
 		<h1>
-			<a href="<?=base_url()?>admin">Berlitz Leave Monitoring System</a>
+			<a href="<?=base_url()?>hr/viewEmp"><img src="<?=base_url()?>public/images/berlitz_company_banner.jpg" height="150" width="960"/></a>
 		</h1>
 		<nav>
 			<ul>
-				<li class="active"><a href="<?=base_url()?>hr/viewEmp">Employee</a></li>
+				<li class="active"><a href="<?=base_url()?>hr/viewEmp">Employees</a></li>
+				<li><a href="<?=base_url()?>leave">Leave</a></li>
 				<li><a href="<?=base_url()?>report">Reports</a></li>
 				
 			</ul>
@@ -81,7 +82,7 @@
 		-->
 		
 	</div><!-- container --><br/><br/><br/><br/><br/>
-		<footer class="footer"><center><strong>Copyright © 2013 Dar Al Khibra Company<br/>Version 1.1.1</strong></center></footer>
+		<footer class="footer"><center><strong>Copyright © 2013 Dar Al Khibra Company<br/>Version 2.1.1</strong></center></footer>
 
 <!-- End Document
 ================================================== -->

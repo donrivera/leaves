@@ -21,7 +21,7 @@ $(document).ready(function()
 $(function()
 {
 	$( "#datepicker" ).datepicker();
-	$( "#datepicker" ).datepicker( "option", "dateFormat", "mm-dd-yy");
+	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
 	
 	 
 });</script>
@@ -43,7 +43,7 @@ $(function()
 					</tr>
 					<tr>
 						<td>Start Date:</td>
-						<script>$(function(){$("#datepicker").datepicker( "setDate" , "<?=$q->registration_date?>" );});</script>
+						<script>$(function(){$("#datepicker").datepicker( "setDate" , "<?=$q->start_date?>" );});</script>
 						<td><input type="text" name="start_date" id="datepicker"/></td>
 					</tr>
 					<tr>
@@ -57,10 +57,12 @@ $(function()
 							</select>
 						</td>
 					</tr>
+					<!--
 					<tr>
 						<td>Outstanding Balance:</td>
-						<td><input type="text" name="outstanding_balance" value="<?=$q->outstanding_balance?>"/></td>
+						<td><input type="text" name="outstanding_balance" value="<?//=$q->outstanding_balance?>"/></td>
 					</tr>
+					-->
 					<tr>
 						<td></td>
 						<td>

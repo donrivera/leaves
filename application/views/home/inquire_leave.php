@@ -21,13 +21,18 @@ $(document).ready(function()
 $(function()
 {
 	$( "#datepicker" ).datepicker();
-	$( "#datepicker" ).datepicker( "option", "dateFormat", "mm-dd-yy" );
+	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 	$( "#datepicker1" ).datepicker();
-	$( "#datepicker1" ).datepicker( "option", "dateFormat", "mm-dd-yy" );
+	$( "#datepicker1" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 });
 </script>
 <br/>
-
+<h4>Inquire Leaves</h4>
+<br/>
+<?php if ( $this->session->flashdata( 'message' ) ) : ?>
+    <p><?php echo $this->session->flashdata( 'message' ); ?></p>
+<?php endif; ?>
+<br/>
 <form action="viewLeave" method="post" id="frm">
 			<table border="1">
 				<tr>
@@ -46,7 +51,7 @@ $(function()
 					<td>
 						<input type="text" name="start_date" id="datepicker"/>
 						to
-						<input type="text" name="start_date" id="datepicker1"/>
+						<input type="text" name="end_date" id="datepicker1"/>
 					</td>
 				</tr>
 				<tr>

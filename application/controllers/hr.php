@@ -1,32 +1,32 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Hr extends CI_Controller 
 {
-	public function __construct()
+	function __construct()
     {
         parent::__construct();
         $this->load->library('template');
 		//$this->load->model('user','',TRUE);
 		$this->load->model('employee','',TRUE);
 	}
-	public function index()
+	function index()
 	{
 		$data = array('title' => 'Dashboard',);
 		$this->template->load('hr', '/hr/dashboard', $data);
 	}
-	public function addEmp()
+	function addEmp()
 	{
 		//echo var_dump($this->input->post());
 		$dtl = array(
-						//'employee_id'					=> $this->input->post('emp_id'),
-               			'first_name'      	 			=> $this->input->post('f_name'),
-						'last_name'      	 			=> $this->input->post('l_name'),
-               			'start_date'     				=> $this->input->post('start_date'),
-               			'num_of_days'          			=> $this->input->post('num_days'),
-               			'outstanding_balance'           => $this->input->post('outstanding_balance')
+						//'employee_id'			=> $this->input->post('emp_id'),
+               			'first_name'      	 	=> $this->input->post('f_name'),
+						'last_name'      	 	=> $this->input->post('l_name'),
+               			'start_date'     		=> $this->input->post('start_date'),
+               			'num_of_days'          	=> $this->input->post('num_days'),
+               			'vl_outstanding'        => $this->input->post('vl_outstanding'),
+						'sl_outstanding'        => $this->input->post('sl_outstanding')
             		);
 		$this->employee->addEmp($dtl);
-		redirect('hr', 'refresh');
-		
+		redirect('hr/viewEmp', 'refresh');
 	}
 	function viewEmp()
 	{
@@ -51,7 +51,7 @@ class Hr extends CI_Controller
 						'last_name'      	 			=> $this->input->post('l_name'),
                			'start_date'     				=> $this->input->post('start_date'),
                			'num_of_days'          			=> $this->input->post('num_days'),
-               			'outstanding_balance'           => $this->input->post('outstanding_balance')
+               			//'outstanding_balance'           => $this->input->post('outstanding_balance')
             		);
 		$this->employee->updateEmp($dtl,$id);
 		redirect('hr/viewEmp', 'refresh');

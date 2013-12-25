@@ -9,25 +9,32 @@ Class Employee extends CI_Model
 	{
 		extract($data);
 		$dataArr = array(
-							//'employee_id'			=> $employee_id,
-							'first_name'      	 	=> $first_name,
-							'last_name'      	 	=> $last_name,
-							'start_date'     		=> $start_date,
-							'num_of_days'          	=> $num_of_days,
-							'outstanding_balance'   => $outstanding_balance
+							//'employee_id'	   => $employee_id,
+							'first_name'       => $first_name,
+							'last_name'        => $last_name,
+							'start_date'       => $start_date,
+							'num_of_days'      => $num_of_days,
+							'vl_outstanding'   => $vl_outstanding,
+							'sl_outstanding'   => $sl_outstanding
 						);
 						
 		return $this->db->insert('employees',$dataArr);
 	}
 	function viewEmp()
 	{
-		$sql="SELECT * FROM employees";
+		$sql="SELECT * FROM employees LIMIT 0,10";
 		$query=$this->db->query($sql);
 		return $query;
 	}
 	function getEmp($name)
 	{
 		$sql="SELECT * FROM employees WHERE first_name='$name'";
+		$query=$this->db->query($sql);
+		return $query;
+	}
+	function getIdByFname($name)
+	{
+		$sql="SELECT id FROM employees WHERE first_name='$name'";
 		$query=$this->db->query($sql);
 		return $query;
 	}
@@ -46,7 +53,7 @@ Class Employee extends CI_Model
 							'last_name'      	 	=> $last_name,
 							'start_date'     		=> $start_date,
 							'num_of_days'          	=> $num_of_days,
-							'outstanding_balance'   => $outstanding_balance
+							//'outstanding_balance'   => $outstanding_balance
 						);
 						
 		return $this->db->update('employees', $dataArr, array('id' => $id));

@@ -43,9 +43,16 @@
 	q:before, q:after {
 		content: '';
 		content: none; }
-	table {
+	table
+	{
 		border-collapse: collapse;
-		border-spacing: 0; }
+		border-spacing: 5; 
+	}
+	tr,th,td
+	{
+		padding:5px;
+		margin: 2px;
+	}
 
 
 /* #Basic Styles

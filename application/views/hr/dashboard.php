@@ -21,12 +21,12 @@ $(document).ready(function()
 $(function()
 {
 	$( "#datepicker" ).datepicker();
-	$( "#datepicker" ).datepicker( "option", "dateFormat", "mm-dd-yy" );
+	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 	 
 });</script>
 
-<BR/>Add Employee
-		<form action="hr/addEmp" method="post" id="frm">
+<BR/><h4>Add Employee</h4>
+		<form action="<?=site_url('hr/addEmp'); ?>" method="post" id="frm">
 			<table border="1">
 				
 				<tr>
@@ -42,7 +42,7 @@ $(function()
 					<td><input type="text" name="start_date" id="datepicker"/></td>
 				</tr>
 				<tr>
-					<td>Leave Per 365 days:</td>
+					<td>Leave Per 365 days(VL,SL):</td>
 					<td>
 						<select name="num_days">
 							<option value="">Select Type</option>
@@ -53,8 +53,12 @@ $(function()
 					</td>
 				</tr>
 				<tr>
-					<td>Outstanding Balance:</td>
-					<td><input type="text" name="outstanding_balance"/></td>
+					<td>VL Outstanding:</td>
+					<td><input type="text" name="vl_outstanding"/></td>
+				</tr>
+				<tr>
+					<td>SL Outstanding:</td>
+					<td><input type="text" name="sl_outstanding"/></td>
 				</tr>
 				<!--
 				<tr>
