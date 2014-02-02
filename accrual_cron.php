@@ -5,6 +5,7 @@ function accrual_history($emp_id,$code)
 {mysql_query("INSERT INTO accrual_history(employee_id,leave_code,date,year) VALUES('".$emp_id."','".$code."','".date('Y-m-d G:i:s')."','".date('Y')."')");}
 function insertBalance($emp_id,$code,$balance)
 {mysql_query("INSERT INTO leave_balance(employee_id,leave_code,balance) VALUES('".$emp_id."','".$code."','".$balance."')");}
+$sl_accrual_days=20;
 mysql_connect('localhost','root','mamamia') or die('Cannot connect to database...');
 mysql_select_db('leaves') or die('Cannot select database...');
 $result = mysql_query("SELECT * FROM employees");
@@ -29,7 +30,7 @@ while($row = mysql_fetch_array($result))
 			{
 				/*get outstanding balance*/
 				$vl_balance=$days + $row['vl_outstanding'];
-				$sl_balance=$days + $row['sl_outstanding'];
+				$sl_balance=$sl_accrual_days + $row['sl_outstanding'];
 				insertBalance($emp_id,'VL',$vl_balance);
 				insertBalance($emp_id,'SL',$sl_balance);
 				accrual_history($emp_id,'VL');
@@ -39,13 +40,13 @@ while($row = mysql_fetch_array($result))
 			else
 			{
 				updateBalance($emp_id,$days,'VL');
-				updateBalance($emp_id,$days,'SL');
+				updateBalance($emp_id,$sl_accrual_days,'SL');
 				accrual_history($emp_id,'VL');
 				accrual_history($emp_id,'SL');
 				echo "Updated Balances:&nbsp;".$emp_id."<BR/>";
 			}
 		}
-		else{echo "Employee has a accrual...<BR/>";}
+		else{echo "Employee&nbsp;".$emp_id."&nbsp;has an accrual for year&nbsp;".date('Y')."&nbsp;...<BR/>";}
 	}
 	else
 	{

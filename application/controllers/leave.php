@@ -21,7 +21,7 @@ class Leave extends CI_Controller
 	}
 	function add()
 	{
-		echo var_dump($this->input->post());
+		#echo var_dump($this->input->post());
 		$id=$this->input->post('emp_id');
 		$leave_type=$this->input->post('leave_type');
 		$days=$this->input->post('no_days');
@@ -32,6 +32,11 @@ class Leave extends CI_Controller
 								$vl_sql=$this->leave_balance->viewBalance($id,$leave_type)->row();
 								$sl_sql=$this->leave_balance->viewBalance($id,'SL')->row();
 								$vl=$vl_sql->balance - $days;
+								#if($vl<0)
+								#{
+								#	$this->session->set_flashdata( 'message', 'Employee Does not have enough VL Balance...' );
+								#	redirect('leave', 'refresh');
+								#}
 								$this->leave_balance->updateBalance($id,$vl,$leave_type);
 								$sl=$sl_sql->balance;
 							}break;
@@ -39,6 +44,11 @@ class Leave extends CI_Controller
 								$sl_sql=$this->leave_balance->viewBalance($id,$leave_type)->row();
 								$vl_sql=$this->leave_balance->viewBalance($id,'VL')->row();
 								$sl=$sl_sql->balance - $days;
+								#if($sl<0)
+								#{
+								#	$this->session->set_flashdata( 'message', 'Employee Does not have enough SL Balance...' );
+								#	redirect('leave', 'refresh');
+								#}
 								$this->leave_balance->updateBalance($id,$sl,$leave_type);
 								$vl=$vl_sql->balance;
 							}break;
@@ -56,6 +66,7 @@ class Leave extends CI_Controller
 						'sl'		    => $sl
             		);
 		$this->leave_transaction->add($dtl);
+		$this->session->set_flashdata( 'message', 'Processed Employee Leave/s...' );
 		redirect('leave', 'refresh');
 		
 	}

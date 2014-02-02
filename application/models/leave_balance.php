@@ -27,22 +27,16 @@ Class Leave_balance extends CI_Model
 		return $this->db->update('leave_balance',array('balance'=>$balance),array('employee_id' => $id,'leave_code'=>$code));
 		
 	}	
-	/*
 	function add($data = array())
 	{
 		extract($data);
 		$dataArr = array(
 							'employee_id'		=> $employee_id,
-							'leave_type'      	=> $leave_type,
-							'pay_type'      	=> $pay_type,
-							'no_days'     		=> $no_days,
-							'start'          	=> $start,
-							'end'          	    => $end,
-							'vl'          	    => $vl,
-							'sl'          	    => $sl
+							'leave_code'      	=> $leave_code,
+							'balance'			=> $balance
 						);
-		return $this->db->insert('leave_transaction',$dataArr);
+		return $this->db->insert('leave_balance',$dataArr);
 	}
-	*/
+	
 }
 ?>

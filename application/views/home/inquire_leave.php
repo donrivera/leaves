@@ -4,6 +4,7 @@
 <style>
 div.ui-datepicker{
  font-size:11px;
+ width: 20em;
 }
 </style>
 <script>
@@ -20,10 +21,15 @@ $(document).ready(function()
 <script>
 $(function()
 {
-	$( "#datepicker" ).datepicker();
-	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-	$( "#datepicker1" ).datepicker();
-	$( "#datepicker1" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	$( "#datepicker" ).datepicker({
+										dateFormat: 'yy-mm-dd',
+										minDate: 0
+									});
+	
+	$( "#datepicker1" ).datepicker({
+										dateFormat: 'yy-mm-dd',
+										minDate: 0
+									});
 });
 </script>
 <br/>

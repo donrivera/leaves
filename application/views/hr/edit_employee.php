@@ -4,7 +4,10 @@
 <style>
 div.ui-datepicker{
  font-size:11px;
+ width: 20em;
 }
+.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-year { width: 80%;}
 </style>
 <script>
 $(document).ready(function() 
@@ -20,8 +23,14 @@ $(document).ready(function()
 <script>
 $(function()
 {
-	$( "#datepicker" ).datepicker();
-	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
+	$( "#datepicker" ).datepicker({
+										changeMonth: true,
+										changeYear: true,
+										dateFormat: 'yy-mm-dd'
+										//beforeShowDay:function (dt){return [dt.getDay() == 5 || dt.getDay() == 6 ? false : true];},
+										//onSelect:showtime,
+										//onClose:date_change
+									});
 	
 	 
 });</script>
@@ -31,6 +40,7 @@ $(function()
 	<?else:?>
 	
 		<?foreach($queries as $q):?>
+			
 			<form action="<?=base_url()?>hr/updateEmpLeave" method="post" id="frm">
 				<table border="1">
 					<tr>
@@ -47,7 +57,7 @@ $(function()
 						<td><input type="text" name="start_date" id="datepicker"/></td>
 					</tr>
 					<tr>
-						<td>Leave Per 365 days:</td>
+						<td>Leave Per 365 days(VL,SL):</td>
 						<td>
 							<select name="num_days">
 								<option value="">Select Type</option>
@@ -57,12 +67,19 @@ $(function()
 							</select>
 						</td>
 					</tr>
-					<!--
+					<?
+						$this->load->model('leave_balance','',TRUE);
+						$vl=$this->leave_balance->viewBalance($q->id,'VL')->row();
+						$sl=$this->leave_balance->viewBalance($q->id,'SL')->row();
+					?>
 					<tr>
-						<td>Outstanding Balance:</td>
-						<td><input type="text" name="outstanding_balance" value="<?//=$q->outstanding_balance?>"/></td>
+						<td>VL Outstanding:</td>
+						<td><input type="text" name="vl_outstanding" value="<?=$vl->balance?>"/></td>
 					</tr>
-					-->
+					<tr>
+						<td>SL Outstanding:</td>
+						<td><input type="text" name="sl_outstanding" value="<?=$sl->balance?>"/></td>
+					</tr>
 					<tr>
 						<td></td>
 						<td>

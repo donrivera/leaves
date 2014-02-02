@@ -1,9 +1,10 @@
 <?php
 Class Employee extends CI_Model
-{
+{	private $date_added;
 	function __construct()
 	{
         parent::__construct();
+		$this->date_added=date("Y-m-d H:i:s");
     }
 	function addEmp($data = array())
 	{
@@ -15,10 +16,12 @@ Class Employee extends CI_Model
 							'start_date'       => $start_date,
 							'num_of_days'      => $num_of_days,
 							'vl_outstanding'   => $vl_outstanding,
-							'sl_outstanding'   => $sl_outstanding
+							'sl_outstanding'   => $sl_outstanding,
+							'date_added'	   => $this->date_added
 						);
 						
-		return $this->db->insert('employees',$dataArr);
+		$this->db->insert('employees',$dataArr);
+		return $this->db->insert_id();
 	}
 	function viewEmp()
 	{
@@ -53,7 +56,8 @@ Class Employee extends CI_Model
 							'last_name'      	 	=> $last_name,
 							'start_date'     		=> $start_date,
 							'num_of_days'          	=> $num_of_days,
-							//'outstanding_balance'   => $outstanding_balance
+							'vl_outstanding'   		=> $vl_outstanding,
+							'sl_outstanding'   		=> $sl_outstanding
 						);
 						
 		return $this->db->update('employees', $dataArr, array('id' => $id));

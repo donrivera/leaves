@@ -7,6 +7,7 @@ class Hr extends CI_Controller
         $this->load->library('template');
 		//$this->load->model('user','',TRUE);
 		$this->load->model('employee','',TRUE);
+		$this->load->model('leave_balance','',TRUE);
 	}
 	function index()
 	{
@@ -16,16 +17,23 @@ class Hr extends CI_Controller
 	function addEmp()
 	{
 		//echo var_dump($this->input->post());
+		$vl_bal=$this->input->post('vl_outstanding');
+		$sl_bal=$this->input->post('sl_outstanding');
 		$dtl = array(
 						//'employee_id'			=> $this->input->post('emp_id'),
                			'first_name'      	 	=> $this->input->post('f_name'),
 						'last_name'      	 	=> $this->input->post('l_name'),
                			'start_date'     		=> $this->input->post('start_date'),
                			'num_of_days'          	=> $this->input->post('num_days'),
-               			'vl_outstanding'        => $this->input->post('vl_outstanding'),
-						'sl_outstanding'        => $this->input->post('sl_outstanding')
+               			'vl_outstanding'        => $vl_bal,
+						'sl_outstanding'        => $sl_bal
             		);
-		$this->employee->addEmp($dtl);
+		
+		$id=$this->employee->addEmp($dtl);
+		$vl=array("employee_id"=>$id,"leave_code"=>'VL',"balance"=>$vl_bal);
+		$sl=array("employee_id"=>$id,"leave_code"=>'SL',"balance"=>$sl_bal);
+		$this->leave_balance->add($vl);
+		$this->leave_balance->add($sl);
 		redirect('hr/viewEmp', 'refresh');
 	}
 	function viewEmp()
@@ -43,17 +51,22 @@ class Hr extends CI_Controller
 	}
 	function updateEmpLeave()
 	{
-		//echo var_dump($this->input->post());
+		#echo var_dump($this->input->post());
+		$vl_bal=$this->input->post('vl_outstanding');
+		$sl_bal=$this->input->post('sl_outstanding');
 		$id=$this->input->post('id');
 		$dtl = array(
-						//'employee_id'					=> $this->input->post('emp_id'),
-               			'first_name'      	 			=> $this->input->post('f_name'),
-						'last_name'      	 			=> $this->input->post('l_name'),
-               			'start_date'     				=> $this->input->post('start_date'),
-               			'num_of_days'          			=> $this->input->post('num_days'),
-               			//'outstanding_balance'           => $this->input->post('outstanding_balance')
+						//'employee_id'			=> $this->input->post('emp_id'),
+               			'first_name'      	 	=> $this->input->post('f_name'),
+						'last_name'      	 	=> $this->input->post('l_name'),
+               			'start_date'     		=> $this->input->post('start_date'),
+               			'num_of_days'          	=> $this->input->post('num_days'),
+               			'vl_outstanding'        => $vl_bal,
+						'sl_outstanding'        => $sl_bal
             		);
 		$this->employee->updateEmp($dtl,$id);
+		$this->leave_balance->updateBalance($id,$vl_bal,'VL');
+		$this->leave_balance->updateBalance($id,$sl_bal,'SL');
 		redirect('hr/viewEmp', 'refresh');
 		
 	}

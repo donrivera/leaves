@@ -22,7 +22,8 @@ $(function()
 		<th align="center">Last Name</th>
 		<th align="center">Starting Date</th>
 		<th align="center">Annual Leave</th>
-		<th align="center">Leave Balance</th>
+		<th align="center">VL Balance</th>
+		<th align="center">SL Balance</th>
 		<th align="center">Annual leave balance on</th>
 		<th align="center">Action</th>
 	</tr>
@@ -30,21 +31,28 @@ $(function()
 <tbody> 
 	<? if($queries < 0 || empty($queries)):?>
 	<tr>
-		<td align="center"><h6>No Result Found...</h6></td>
+		<td align="center"><h6>No Result/s Found...</h6></td>
 	</tr>
 	<?else:?>
 	<?php foreach($queries as $q):?>
+	<?
+		$this->load->model('leave_balance','',TRUE);
+		$vl=$this->leave_balance->viewBalance($q->id,'VL')->row();
+		$sl=$this->leave_balance->viewBalance($q->id,'SL')->row();
+	?>
 	<tr>
 		<td align="center"><h6><?=substr($q->id,3,8)?></h6></td>
 		<td align="center"><h6><?=$q->first_name?></h6></td>
 		<td align="center"><h6><?=$q->last_name?></h6></td>
 		<td align="center"><h6><?=$q->start_date?></h6></td>
 		<td align="center"><h6><?=$q->num_of_days?></h6></td>
-		<td align="center"><h6><?=$q->vl_outstanding?></h6></td>
+		<td align="center"><h6><?=$vl->balance?></h6></td>
+		<td align="center"><h6><?=$sl->balance?></h6></td>
 		<td align="center"><h6>
 		<?
 			$date_hired=explode("-",$q->start_date);
 			$year=date("Y", strtotime("- 1 year", mktime(0, 0, 0,$date_hired[2],$date_hired[1],date("Y"))));
+			/*
 			if(date("Y")==$date_hired[0]):
 			echo date("Y-m-d", strtotime("+ 11 month", mktime(0, 0, 0,$date_hired[1],$date_hired[2],$date_hired[0])));
 			elseif($year==$date_hired[0]):
@@ -52,6 +60,23 @@ $(function()
 			else:
 			echo date("Y-m-d", strtotime("+ 11 month", mktime(0, 0, 0,$date_hired[1],$date_hired[2],date("Y"))));
 			endif;
+			*/
+			$prev_year=$year = date('Y')-1;
+			
+			if(date("Y")==$prev_year)
+			{
+				$accrual_year=date("Y-m-d", strtotime("+ 11 month", mktime(0, 0, 0,$date_hired[1],$date_hired[2],$date_hired[0])));
+			}
+			else
+			{
+				if($date_hired[1]==01)
+				{	$prev_year +=1;
+					$accrual_year=date("Y-m-d", strtotime("+ 11 month", mktime(0, 0, 0,$date_hired[1],$date_hired[2],$prev_year)));
+				}
+				else
+				{$accrual_year=date("Y-m-d", strtotime("+ 11 month", mktime(0, 0, 0,$date_hired[1],$date_hired[2],$prev_year)));}
+			}
+			echo $accrual_year;
 		?></h6>
 		</td>
 		<td align="center">

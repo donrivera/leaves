@@ -5,7 +5,12 @@
 <style>
 div.ui-datepicker{
  font-size:11px;
+ width: 20em;
+ 
 }
+
+.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-year { width: 80%;}
 </style>
 <script>
 $(document).ready(function() 
@@ -21,13 +26,28 @@ $(document).ready(function()
 <script>
 $(function()
 {
-	$( "#datepicker" ).datepicker();
-	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-	$( "#datepicker1" ).datepicker();
-	$( "#datepicker1" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	$( "#datepicker" ).datepicker({
+										dateFormat: 'yy-mm-dd',
+										minDate: 0
+										//beforeShowDay:function (dt){return [dt.getDay() == 5 || dt.getDay() == 6 ? false : true];},
+										//onSelect:showtime,
+										//onClose:date_change
+									});
+	
+	$( "#datepicker1" ).datepicker({
+										dateFormat: 'yy-mm-dd',
+										minDate: 0
+										//beforeShowDay:function (dt){return [dt.getDay() == 5 || dt.getDay() == 6 ? false : true];},
+										//onSelect:showtime,
+										//onClose:date_change
+									
+									});
 });
 </script>
-
+<br/>
+<?php if ( $this->session->flashdata( 'message' ) ) : ?>
+    <p><?php echo $this->session->flashdata( 'message' ); ?></p>
+<?php endif; ?>
 <BR/><h4>Leave Form</h4>
 		<form action="leave/add" method="post" id="frm">
 			<table border="1">

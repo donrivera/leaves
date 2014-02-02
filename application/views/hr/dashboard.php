@@ -4,7 +4,10 @@
 <style>
 div.ui-datepicker{
  font-size:11px;
+ width: 20em;
 }
+.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-year { width: 80%;}
 </style>
 <script>
 $(document).ready(function() 
@@ -20,8 +23,14 @@ $(document).ready(function()
 <script>
 $(function()
 {
-	$( "#datepicker" ).datepicker();
-	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	$( "#datepicker" ).datepicker({
+										changeMonth: true,
+										changeYear: true,
+										dateFormat: 'yy-mm-dd'
+										//beforeShowDay:function (dt){return [dt.getDay() == 5 || dt.getDay() == 6 ? false : true];},
+										//onSelect:showtime,
+										//onClose:date_change
+									});
 	 
 });</script>
 
@@ -60,18 +69,6 @@ $(function()
 					<td>SL Outstanding:</td>
 					<td><input type="text" name="sl_outstanding"/></td>
 				</tr>
-				<!--
-				<tr>
-					<td>Type of Leave:</td>
-					<td>
-						<select name="type_of_leave">
-							<option value="">Select Type</option>
-							<option value="pd">Paid</option>
-							<option value="ntpd">Not Paid</option>
-						</select>
-					</td>
-				</tr>
-				-->
 				<tr>
 					<td></td>
 					<td>

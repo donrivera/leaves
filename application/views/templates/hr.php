@@ -82,7 +82,7 @@
 		-->
 		
 	</div><!-- container --><br/><br/><br/><br/><br/>
-		<footer class="footer"><center><strong>Copyright © 2013 Dar Al Khibra Company<br/>Version 2.1.1</strong></center></footer>
+		<footer class="footer"><center><strong>Copyright © 2013 Dar Al Khibra Company<br/>Version 2.2.1</strong></center></footer>
 
 <!-- End Document
 ================================================== -->
