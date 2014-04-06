@@ -32,50 +32,53 @@
 	<link rel="apple-touch-icon" href="<?=base_url()?>public/images/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="<?=base_url()?>public/images/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="<?=base_url()?>public/images/apple-touch-icon-114x114.png">
-	<!-- Javascript
-  ================================================== -->
-	<script src="<?=base_url()?>public/js/jquery-1.9.1.js"></script>
-	<!--
-	<script>
-	$(function() 
-	{
-		if ($.browser.msie && $.browser.version.substr(0,1)<7)
-		{
-			$('li').has('ul').mouseover(function()
-			{$(this).children('ul').css('visibility','visible');}).mouseout(function(){$(this).children('ul').css('visibility','hidden');})
-		}
-	}); 
-	</script>
-	-->
+
 </head>
 <body>
 	<!-- Primary Page Layout
 	================================================== -->
 	<!-- Delete everything in this .container and get started on your own site! -->
 	<div class="container">
-		<div id="sixteen columns">
-			<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="<?=base_url()?>">
-				<img src="<?=base_url()?>public/images/berlitz.jpg" height="30%" width="20%"/>
-			</a>
-		</div>
+		<header id="header" class="body">
+		<br/>
+		<h1>
+			<a href="<?=base_url()?>"><img src="<?=base_url()?>public/images/berlitz_company_banner.jpg" height="150" width="960"/></a>
+		</h1>
+		<nav>
+			<ul>
+				<li class="active"><a href="<?=base_url()?>home">Home</a></li>
+				<li><a href="<?=base_url()?>home/inquireLeave">Inquire Leave Balance</a></li>
+				<li><a href="<?=base_url()?>home/admin">Administrator</a></li>
+			</ul>
+		</nav>
+		</header><!-- /#banner -->
 		<div class="sixteen columns">
-			<nav>
-				<ul id="menu">
-					<li class="active"><a href="<?=base_url()?>home">Home</a></li>
-					<li><a href="<?=base_url()?>home/inquireLeave">Inquire Leave Balance</a></li>
-					<li><a href="<?=base_url()?>home/admin">Administrator</a></li>
-				</ul>
-			</nav>
+			
 			<hr />
 		</div>
-		<div class="sixteen columns"><?=$body?></div>
+		
 		<div class="sixteen columns">
-			<hr/>
-			<footer class="footer"><center><strong>Copyright © 2014 Dar Al Khibra Company<br/>Version 2.2.2</strong></center></footer>
-			</br/>
-		</div>	
-	</div><!-- container -->
+			<?=$body?>
+		</div>
+		<!--
+		<div class="one-third column">
+			<h3>Three Core Principles</h3>
+			<p>Skeleton is built on three core principles:</p>
+			<ul class="square">
+				<li><strong>A Responsive Grid Down To Mobile</strong>: Elegant scaling from a browser to tablets to mobile.</li>
+				<li><strong>Fast to Start</strong>: It's a tool for rapid development with best practices</li>
+				<li><strong>Style Agnostic</strong>: It provides the most basic, beautiful styles, but is meant to be overwritten.</li>
+			</ul>
+		</div>
+		<div class="one-third column">
+			<h3>Docs &amp; Support</h3>
+			<p>The easiest way to really get started with Skeleton is to check out the full docs and info at <a href="http://www.getskeleton.com">www.getskeleton.com.</a>. Skeleton is also open-source and has a <a href="https://github.com/dhgamache/skeleton">project on git</a>, so check that out if you want to report bugs or create a pull request. If you have any questions, thoughts, concerns or feedback, please don't hesitate to email me at <a href="mailto:hi@getskeleton.com">hi@getskeleton.com</a>.</p>
+		</div>
+		-->
+		
+	</div><!-- container --><br/><br/><br/><br/><br/>
+		<footer class="footer"><center><strong>Copyright © 2013 Dar Al Khibra Company<br/>Version 2.2.1</strong></center></footer>
+
 <!-- End Document
 ================================================== -->
 </body>

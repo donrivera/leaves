@@ -16,7 +16,7 @@ class Leave extends CI_Controller
 	{	$queries=$this->employee->viewEmp()->result();
 		$leave_type=$this->leave_type->view()->result();
 		$pay_type=$this->pay_type->view()->result();
-		$data=array('title'=>'Reports','queries'=>$queries,'leave_types'=>$leave_type,'pay_types'=>$pay_type);
+		$data=array('title'=>'Leave Transactions','queries'=>$queries,'leave_types'=>$leave_type,'pay_types'=>$pay_type);
 		$this->template->load('hr', '/leave/home', $data);
 	}
 	function add()
@@ -25,7 +25,11 @@ class Leave extends CI_Controller
 		$id=$this->input->post('emp_id');
 		$leave_type=$this->input->post('leave_type');
 		$days=$this->input->post('no_days');
-		
+		if(empty($leave_type) || empty($days))
+		{
+			$this->session->set_flashdata( 'message', 'Please Complete Fields...' );
+			redirect('leave', 'refresh');
+		}
 		switch($leave_type)
 		{
 			case 'VL':		{
@@ -68,6 +72,5 @@ class Leave extends CI_Controller
 		$this->leave_transaction->add($dtl);
 		$this->session->set_flashdata( 'message', 'Processed Employee Leave/s...' );
 		redirect('leave', 'refresh');
-		
 	}
 }

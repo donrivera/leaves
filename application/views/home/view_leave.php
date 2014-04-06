@@ -8,7 +8,7 @@ $(function()
 {
 	$("table")
 		.tablesorter({widthFixed: true, widgets: ['zebra']})
-		.tablesorterPager({container: $("#pager")});
+		.tablesorterPager({container: $("#pager"),size:5});
 });
 </script>
 	<?
@@ -19,7 +19,7 @@ $(function()
 		//echo round($diff / 86400)."&nbsp;days";
 	?>
 <br/>
-<?="<b><h5>".count($queries)."&nbsp;Record/s Found</h5></b>";?>
+<?="<b><h6>".count($queries)."&nbsp;Record/s Found</h6></b>";?>
 <br/>
 <table class="tablesorter">
 	<thead> 
@@ -68,12 +68,13 @@ $(function()
 			</h6>
 			</td>
 			<td align="center"><h6><?=$vl + $q->num_of_days?></h6></td>
-			<td align="center"><h6><?=$sl + 20?></h6></td>
+			<td align="center"><h6><?=20?></h6></td>
 		</tr>
 		<?endforeach;?>
 		<? endif;?>
 	</tbody>
 </table>
+
 <!-- pager -->
 <div id="pager" class="pager">
   <form>
@@ -83,11 +84,10 @@ $(function()
     <img src="<?=base_url()?>public/js/table_sorter/addons/pager/icons/next.png" class="next"/>
     <img src="<?=base_url()?>public/js/table_sorter/addons/pager/icons/last.png" class="last"/>
     <select class="pagesize" width="">
-      <option selected="selected" value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
+      <option selected="selected" value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
     </select>
   </form>
 </div>
-
+<br/><br/><br/><br/><br/>

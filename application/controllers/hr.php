@@ -19,22 +19,32 @@ class Hr extends CI_Controller
 		//echo var_dump($this->input->post());
 		$vl_bal=$this->input->post('vl_outstanding');
 		$sl_bal=$this->input->post('sl_outstanding');
-		$dtl = array(
-						//'employee_id'			=> $this->input->post('emp_id'),
-               			'first_name'      	 	=> $this->input->post('f_name'),
-						'last_name'      	 	=> $this->input->post('l_name'),
-               			'start_date'     		=> $this->input->post('start_date'),
-               			'num_of_days'          	=> $this->input->post('num_days'),
-               			'vl_outstanding'        => $vl_bal,
-						'sl_outstanding'        => $sl_bal
-            		);
-		
-		$id=$this->employee->addEmp($dtl);
-		$vl=array("employee_id"=>$id,"leave_code"=>'VL',"balance"=>$vl_bal);
-		$sl=array("employee_id"=>$id,"leave_code"=>'SL',"balance"=>$sl_bal);
-		$this->leave_balance->add($vl);
-		$this->leave_balance->add($sl);
-		redirect('hr/viewEmp', 'refresh');
+		$fname=$this->input->post('f_name');
+		$lname=$this->input->post('l_name');
+		$employment=$this->input->post('start_date');
+		if(empty($fname) || empty($lname) || empty($employment))
+		{
+			$this->session->set_flashdata( 'message', 'Please Complete Fields...' );
+			redirect('hr', 'refresh');
+		}
+		else
+		{
+			$dtl = array(
+							//'employee_id'			=> $this->input->post('emp_id'),
+							'first_name'      	 	=> $this->input->post('f_name'),
+							'last_name'      	 	=> $this->input->post('l_name'),
+							'start_date'     		=> $this->input->post('start_date'),
+							'num_of_days'          	=> $this->input->post('num_days'),
+							'vl_outstanding'        => $vl_bal,
+							'sl_outstanding'        => $sl_bal
+						);
+			$id=$this->employee->addEmp($dtl);
+			$vl=array("employee_id"=>$id,"leave_code"=>'VL',"balance"=>$vl_bal);
+			$sl=array("employee_id"=>$id,"leave_code"=>'SL',"balance"=>$sl_bal);
+			$this->leave_balance->add($vl);
+			$this->leave_balance->add($sl);
+			redirect('hr/viewEmp', 'refresh');
+		}
 	}
 	function viewEmp()
 	{

@@ -1,4 +1,3 @@
-<script src="<?=base_url()?>public/js/jquery-1.9.1.js"></script>
 <script src="<?=base_url()?>public/js/jquery-ui-1.10.3.custom.min.js"></script>
 <link rel="stylesheet" href="<?=base_url()?>public/css/ui-lightness/jquery-ui-1.10.3.custom.min.css"/>
 <style>

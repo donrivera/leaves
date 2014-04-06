@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="<?=base_url()?>public/js/table_sorter/themes/blue/style.css" media="print, projection, screen">
-
 <script type="text/javascript" src="<?=base_url()?>public/js/table_sorter/jquery-latest.js"></script> 
 <script type="text/javascript" src="<?=base_url()?>public/js/table_sorter/jquery.tablesorter.js"></script> 
 <script type="text/javascript" src="<?=base_url()?>public/js/table_sorter/addons/pager/jquery.tablesorter.pager.js"></script>
@@ -8,11 +7,10 @@ $(function()
 {
 	$("table")
 		.tablesorter({widthFixed: true, widgets: ['zebra']})
-		.tablesorterPager({container: $("#pager")});
+		.tablesorterPager({container: $("#pager"),size:5});
 });
 </script>
-<br/>
-<a href="<?=base_url()?>hr/"><h5>Add New</h5></a>	
+<a href="<?=base_url()?>hr/"><h6>Add New</h6></a>	
 <br/>
 <table class="tablesorter"> 
 <thead> 
@@ -23,7 +21,7 @@ $(function()
 		<th align="center">Starting Date</th>
 		<th align="center">Annual Leave</th>
 		<th align="center">VL Balance</th>
-		<th align="center">SL Balance</th>
+		<th align="center">SL Current</th>
 		<th align="center">Annual leave balance on</th>
 		<th align="center">Action</th>
 	</tr>
@@ -90,6 +88,7 @@ $(function()
 	<? endif;?>
 </tbody> 
 </table>
+<br/><br/><br/><br/><br/>
 <!-- pager -->
 <div id="pager" class="pager">
   <form>
@@ -99,11 +98,10 @@ $(function()
     <img src="<?=base_url()?>public/js/table_sorter/addons/pager/icons/next.png" class="next"/>
     <img src="<?=base_url()?>public/js/table_sorter/addons/pager/icons/last.png" class="last"/>
     <select class="pagesize" width="">
-      <option selected="selected" value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
+      <option selected="selected" value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
     </select>
   </form>
 </div>
-
+<br/><br/><br/><br/><br/>

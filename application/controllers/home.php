@@ -91,7 +91,7 @@ class Home extends CI_Controller
 			return TRUE;
 			
 		}
-		else{$this->session->set_flashdata( 'message', 'A user does not exist for the username specified.' );redirect('home/admin', 'refresh');}
+		else{$this->session->set_flashdata( 'message', 'Username/Password Does Not Exist.' );redirect('home/admin', 'refresh');}
 
 	}
 	public function dashboard()

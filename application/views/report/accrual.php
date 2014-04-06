@@ -10,7 +10,7 @@ $(function()
 		.tablesorterPager({container: $("#pager"),size:5});
 });
 </script>
-<h6>Leave Transactions</h6>
+<h6>Annual Increment Report</h6>
 <br/>
 <?="<b><h6>".count($queries)."&nbsp;Record/s Found</h6></b>";?>
 <br/>
@@ -21,10 +21,9 @@ $(function()
 		<th align="center">First Name</th>
 		<th align="center">Last Name</th>
 		<th align="center">Code</th>
-		<th align="center">Start</th>
-		<th align="center">End</th>
-		<th align="center">Days</th>
-		<th align="center">Pay</th>
+		<th align="center">Forfeit</th>
+		<th align="center">Remarks</th>
+		<th align="center">Year</th>
 	</tr>
 </thead> 
 <tbody> 
@@ -38,11 +37,10 @@ $(function()
 		<td align="center"><h6><?=substr($q->id,5,7)?></h6></td>
 		<td align="center"><h6><?=$q->first_name?></h6></td>
 		<td align="center"><h6><?=$q->last_name?></h6></td>
-		<td align="center"><h6><?=$q->leave_desc?></h6></td>
-		<td align="center"><h6><?=$q->start?></h6></td>
-		<td align="center"><h6><?=$q->end?></h6></td>
-		<td align="center"><h6><?=$q->no_days?></h6></td>
-		<td align="center"><h6><?=$q->pay_desc?></h6></td>
+		<td align="center"><h6><?=$q->desc?></h6></td>
+		<td align="center"><h6><?=$q->forfeit?></h6></td>
+		<td align="center"><h6><?=$q->remarks?></h6></td>
+		<td align="center"><h6><?=$q->year?></h6></td>
 	</tr>
 	<?endforeach;?>
 	<? endif;?>

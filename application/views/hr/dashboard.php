@@ -1,4 +1,3 @@
-<script src="<?=base_url()?>public/js/jquery-1.9.1.js"></script>
 <script src="<?=base_url()?>public/js/jquery-ui-1.10.3.custom.min.js"></script>
 <link rel="stylesheet" href="<?=base_url()?>public/css/ui-lightness/jquery-ui-1.10.3.custom.min.css"/>
 <style>
@@ -34,47 +33,49 @@ $(function()
 	 
 });</script>
 
-<BR/><h4>Add Employee</h4>
-		<form action="<?=site_url('hr/addEmp'); ?>" method="post" id="frm">
-			<table border="1">
-				
-				<tr>
-					<td>First Name:</td>
-					<td><input type="text" name="f_name"/></td>
-				</tr>
-				<tr>
-					<td>Last Name:</td>
-					<td><input type="text" name="l_name"/></td>
-				</tr>
-				<tr>
-					<td>Start Date:</td>
-					<td><input type="text" name="start_date" id="datepicker"/></td>
-				</tr>
-				<tr>
-					<td>Leave Per 365 days(VL,SL):</td>
-					<td>
-						<select name="num_days">
-							<option value="">Select Type</option>
-							<option value="15">15 days</option>
-							<option value="21">21 days</option>
-							<option value="30">30 days</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>VL Outstanding:</td>
-					<td><input type="text" name="vl_outstanding"/></td>
-				</tr>
-				<tr>
-					<td>SL Outstanding:</td>
-					<td><input type="text" name="sl_outstanding"/></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-						<input type="submit" name="submit" value="submit"/>
-						<input type="reset" name="reset" value="reset"/>
-					</td>
-				</tr>
-			</table>
-		</form>
+<BR/><h6>Add Employee</h6>
+<?php if ( $this->session->flashdata( 'message' ) ) : ?>
+    <br/><p><font color="red"><?php echo $this->session->flashdata( 'message' ); ?></font></p>
+<?php endif; ?>
+<form action="<?=site_url('hr/addEmp'); ?>" method="post" id="frm">
+	<table border="1">
+		<tr>
+			<td><label for="regularInput">First Name:</label></td>
+			<td><input type="text" name="f_name"/></td>
+		</tr>
+		<tr>
+			<td><label for="regularInput">Last Name:</label></td>
+			<td><input type="text" name="l_name"/></td>
+		</tr>
+		<tr>
+			<td><label for="regularInput">Start Date:</label></td>
+			<td><input type="text" name="start_date" id="datepicker"/></td>
+		</tr>
+		<tr>
+			<td><label for="regularInput">Leave Per 365 days(VL):</label></td>
+			<td>
+				<select name="num_days">
+					<option value="">Select Type</option>
+					<option value="15">15 days</option>
+					<option value="21">21 days</option>
+					<option value="30">30 days</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="regularInput">Annual Leave:</label></td>
+			<td><input type="text" name="vl_outstanding"/></td>
+		</tr>
+		<tr>
+			<td><label for="regularInput">SL Current:</label></td>
+			<td><input type="text" name="sl_outstanding"/></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<input type="submit" name="submit" value="submit"/>
+				<input type="reset" name="reset" value="reset"/>
+			</td>
+		</tr>
+	</table>
+</form>
