@@ -1,0 +1,15 @@
+#firstBlock{
+				position:absolute;width:100px;margin: 0px;float: left;
+			}
+#secondBlock{
+				position:absolute;width:100px;margin: 0px;float: left;left: 150px;
+			}
+#thirdBlock	{
+				position:absolute;width: 100px;margin: 13px;float: left;left: 280px;vertical-align:middle;
+			}
+.iconPrint	{
+				position:absolute;float:right;right:30px;margin:-15px;
+			}
+.keyword	{
+				width:100px;height:7px;
+			}

@@ -11,7 +11,7 @@ $(function()
 		.tablesorterPager({container: $("#pager"),size:5});
 });
 </script>
-<h6>Leave Transactions</h6>
+<h6>Search Transactions</h6>
 <br/>
 
 <form action="<?=base_url()?>report/search" method="post">

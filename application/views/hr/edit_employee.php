@@ -33,7 +33,7 @@ $(function()
 	
 	 
 });</script>
-<BR/>Edit Employee
+<BR/><h6>Edit Employee</h6><BR/>
 	<? if($queries < 0 || empty($queries)):?>
 		<BR/><BR/>No Result Found...
 	<?else:?>
@@ -43,20 +43,20 @@ $(function()
 			<form action="<?=base_url()?>hr/updateEmpLeave" method="post" id="frm">
 				<table border="1">
 					<tr>
-						<td>First Name:</td>
+						<td><label for="regularInput">First Name:</label></td>
 						<td><input type="text" name="f_name" value="<?=$q->first_name?>"/></td>
 					</tr>
 					<tr>
-						<td>Last Name:</td>
+						<td><label for="regularInput">Last Name:</label></td>
 						<td><input type="text" name="l_name" value="<?=$q->last_name?>"/></td>
 					</tr>
 					<tr>
-						<td>Start Date:</td>
+						<td><label for="regularInput">Start Date:</label></td>
 						<script>$(function(){$("#datepicker").datepicker( "setDate" , "<?=$q->start_date?>" );});</script>
 						<td><input type="text" name="start_date" id="datepicker"/></td>
 					</tr>
 					<tr>
-						<td>Leave Per 365 days(VL,SL):</td>
+						<td><label for="regularInput">Leave Per Year(AL):</label></td>
 						<td>
 							<select name="num_days">
 								<option value="">Select Type</option>
@@ -70,14 +70,19 @@ $(function()
 						$this->load->model('leave_balance','',TRUE);
 						$vl=$this->leave_balance->viewBalance($q->id,'VL')->row();
 						$sl=$this->leave_balance->viewBalance($q->id,'SL')->row();
+						$ul=$this->leave_balance->viewBalance($q->id,'UL')->row();
 					?>
 					<tr>
-						<td>VL Outstanding:</td>
-						<td><input type="text" name="vl_outstanding" value="<?=$vl->balance?>"/></td>
+						<td><label for="regularInput">Annual Leave(Outstanding Balance):</label></td>
+						<td><input type="text" name="vl_outstanding" value="<?=(empty($vl->balance)?'':$vl->balance)?>"/></td>
 					</tr>
 					<tr>
-						<td>SL Outstanding:</td>
-						<td><input type="text" name="sl_outstanding" value="<?=$sl->balance?>"/></td>
+						<td><label for="regularInput">Sick Leave (Current Balance):</label></td>
+						<td><input type="text" name="sl_outstanding" value="<?=(empty($sl->balance)?'':$sl->balance)?>"/></td>
+					</tr>
+					<tr>
+						<td><label for="regularInput">Unpaid Leave:</label></td>
+						<td><input type="text" name="ul_outstanding" value="<?=(empty($ul->balance)?'':$ul->balance)?>"/></td>
 					</tr>
 					<tr>
 						<td></td>

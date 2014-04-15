@@ -63,7 +63,14 @@
 			<nav>
 				<ul id="menu">
 					<li class="active"><a href="<?=base_url()?>hr/viewEmp">Employees</a></li>
-					<li><a href="<?=base_url()?>leave">Leave</a></li>
+					<li><a href="<?=base_url()?>leave/view">Leave</a>
+						<!--
+						<ul>
+							<li><a href="<?=base_url()?>leave/view">View</a></li>
+							<li><a href="<?=base_url()?>leave">Add</a></li>
+						</ul>
+						-->
+					</li>
 					<li>
 						<a href="#">Reports</a>
 						<ul>
@@ -71,21 +78,27 @@
 							<li><a href="<?=base_url()?>report/accrual">Accrual</a></li>
 						</ul>
 					</li>
+					<li class="active"><a href="#">Settings</a>
+						<ul>
+							<li><a href="<?=base_url()?>setting/leave">Leave</a></li>
+						</ul>
+					</li>
 				</ul>
 			</nav>
 		</div>
-		<div class="sixteen columns">
+		<div class="sixteen columns" ><!--style="background-color:#FF8000;"-->
 			<h6>
-				<?$session=$this->session->userdata('logged_in');?><?="Hello,&nbsp;<b>".$session['name']."</b>";?>
+				<?$session=$this->session->userdata('logged_in');?><?="&nbsp;Hello,&nbsp;<b>".$session['name']."</b>";?>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="<?=base_url()?>hr/logout">Log Out</a>
 			</h6>
-			<hr />
+			<!--<hr />-->
+			</br>
 		</div>
-		<div class="sixteen columns"><?=$body?></div>
+		<div class="sixteen columns"><?=$body?></div><!-- style="background-color:#E0E0E0;"-->
 		<div class="sixteen columns">
 			<hr/>
-			<footer class="footer"><center><strong>Copyright © 2014 Dar Al Khibra Company<br/>Version 2.2.2</strong></center></footer>
+			<footer class="footer"><center><strong>Copyright © 2014 Dar Al Khibra Company<br/>Version 2.2.3</strong></center></footer>
 			</br/>
 		</div>	
 	</div><!-- container -->

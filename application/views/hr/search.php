@@ -11,8 +11,8 @@ $(function()
 		.tablesorterPager({container: $("#pager"),size:5});
 });
 </script>
-<a href="<?=base_url()?>hr/"><h6>Add Employee</h6></a>	
-<br/>
+<!--<a href="<?=base_url()?>hr/"><h6>Add Employee</h6></a>-->
+<h6>Search Employee</h6><br/>
 <form action="<?=base_url()?>hr/search" method="post">
 	<div id="firstBlock">
 	Search:&nbsp;

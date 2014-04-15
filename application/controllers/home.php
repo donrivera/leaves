@@ -84,7 +84,7 @@ class Home extends CI_Controller
 				$user_type=$row->type;
 				switch($user_type)
 				{
-						case 'hr':	{redirect('hr', 'refresh');}break;
+						case 'hr':	{redirect('hr/viewEmp', 'refresh');}break;
 						default:	{redirect('home', 'refresh');}
 				}
 			}

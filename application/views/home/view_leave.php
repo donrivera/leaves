@@ -29,10 +29,10 @@ $(function()
 			<th align="center">Last Name</th>
 			<th align="center">Starting Date</th>
 			<th align="center">Annual</th>
-			<th align="center">VL</th>
+			<th align="center">AL</th>
 			<th align="center">SL</th>
 			<th align="center">Annual Accrual</th>
-			<th align="center">After VL Accrual</th>
+			<th align="center">After AL Accrual</th>
 			<th align="center">After SL Accrual</th>
 		</tr>
 	<thead>
@@ -45,7 +45,7 @@ $(function()
 		<?foreach($queries as $q):?>
 	
 		<tr>
-			<td align="center"><h6><?=substr($q->id,3,8)?></h6></td>
+			<td align="center"><h6><?=substr($q->id,5,8)?></h6></td>
 			<td align="center"><h6><?=$q->first_name?></h6></td>
 			<td align="center"><h6><?=$q->last_name?></h6></td>
 			<td align="center"><h6><?=$q->start_date?></h6></td>

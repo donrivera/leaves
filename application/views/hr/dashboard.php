@@ -52,7 +52,7 @@ $(function()
 			<td><input type="text" name="start_date" id="datepicker"/></td>
 		</tr>
 		<tr>
-			<td><label for="regularInput">Leave Per 365 days(VL):</label></td>
+			<td><label for="regularInput">Leave Per Year(AL):</label></td>
 			<td>
 				<select name="num_days">
 					<option value="">Select Type</option>
@@ -63,12 +63,16 @@ $(function()
 			</td>
 		</tr>
 		<tr>
-			<td><label for="regularInput">Annual Leave:</label></td>
+			<td><label for="regularInput">Annual Leave(Outstanding Balance):</label></td>
 			<td><input type="text" name="vl_outstanding"/></td>
 		</tr>
 		<tr>
-			<td><label for="regularInput">SL Current:</label></td>
+			<td><label for="regularInput">Sick Leave (Current Balance):</label></td>
 			<td><input type="text" name="sl_outstanding"/></td>
+		</tr>
+		<tr>
+			<td><label for="regularInput">Unpaid Leave:</label></td>
+			<td><input type="text" name="ul_outstanding"/></td>
 		</tr>
 		<tr>
 			<td></td>

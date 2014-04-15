@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="<?=base_url()?>public/js/table_sorter/themes/blue/style.css" media="print, projection, screen">
-<link rel="stylesheet" href="<?=base_url()?>public/stylesheets/search.css" media="print, projection, screen">
 <script type="text/javascript" src="<?=base_url()?>public/js/table_sorter/jquery-latest.js"></script> 
 <script type="text/javascript" src="<?=base_url()?>public/js/table_sorter/jquery.tablesorter.js"></script> 
 <script type="text/javascript" src="<?=base_url()?>public/js/table_sorter/addons/pager/jquery.tablesorter.pager.js"></script>
@@ -11,42 +10,17 @@ $(function()
 		.tablesorterPager({container: $("#pager"),size:5});
 });
 </script>
-<h6>Leave Transactions</h6>
+<a href="<?=base_url()?>setting/addLeave"><h6>Add Leave</h6></a>	
 <br/>
-
-<form action="<?=base_url()?>report/search" method="post">
-	<div id="firstBlock">
-	Search:&nbsp;
-	<select name="search" style="width:100px;">
-		<option value="">Select</option>
-		<option value="name">Name</option>
-		<option value="id">Id</option>
-	</select>
-	</div>
-	<div id="secondBlock">
-	Keyword:&nbsp;
-	<input type="text" name="key" class="keyword"/>
-	</div>
-	<div id="thirdBlock">
-	<input type="submit" name="submit" value="Search" style="width:70px;height:30px;"/>
-	</div>
-</form>
-<br/><br/>
 <?="<b><h6>".count($queries)."&nbsp;Record/s Found</h6></b>";?>
-<p class="iconPrint"><a href="<?=base_url()?>report/printExcel"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
-<? $this->session->set_userdata('query',$this->db->last_query());?> 
+<br/>
 <table class="tablesorter">
 <thead> 
 	<tr>
-		<th align="center">Employee ID</th>
-		<th align="center">First Name</th>
-		<th align="center">Last Name</th>
 		<th align="center">Code</th>
-		<th align="center">Start</th>
-		<th align="center">End</th>
-		<th align="center">Days</th>
-		<th align="center">Pay</th>
-		<!--<th align="center">Action</th>-->
+		<th align="center">Description</th>
+		<th align="center">Days Per Year</th>
+		<th align="center">Action</th>
 	</tr>
 </thead> 
 <tbody> 
@@ -57,22 +31,16 @@ $(function()
 	<?else:?>
 	<?foreach($queries as $q):?>
 	<tr>
-		<td align="center"><h6><?=substr($q->id,5,8)?></h6></td>
-		<td align="center"><h6><?=$q->first_name?></h6></td>
-		<td align="center"><h6><?=$q->last_name?></h6></td>
-		<td align="center"><h6><?=$q->leave_desc?></h6></td>
-		<td align="center"><h6><?=$q->start?></h6></td>
-		<td align="center"><h6><?=$q->end?></h6></td>
-		<td align="center"><h6><?=$q->no_days?></h6></td>
-		<td align="center"><h6><?=$q->pay_desc?></h6></td>
-		<!--
+		<td align="center"><h6><?=$q->code?></h6></td>
+		<td align="center"><h6><?=$q->desc?></h6></td>
+		<td align="center"><h6><?=($q->code=='VL'?'N/A':$q->days)?></h6></td>
 		<td align="center">
 			<h6>
-				<a href="<?=base_url()?>leave/edit/<?=$q->trans_id?>">Edit</a>
-				<a href="<?=base_url()?>leave/cancel/<?=$q->trans_id?>" onclick="return confirm('Are you sure you want to cancel this record ?')">Cancel</a>
+				<a href="<?=base_url()?>setting/editLeave/<?=$q->id?>">Edit</a>
+				<a href="<?=base_url()?>setting/deleteLeave/<?=$q->id?>" onclick="return confirm('Are you sure you want to cancel this record ?')">Delete</a>
 			</h6>
 		</td>
-		-->
+		
 	</tr>
 	<?endforeach;?>
 	<? endif;?>
