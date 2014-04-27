@@ -5,7 +5,11 @@ class Setting extends CI_Controller
     {
         parent::__construct();
         $this->load->library('template');
+<<<<<<< HEAD
 		$this->load->model('user','',TRUE);
+=======
+		//$this->load->model('user','',TRUE);
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 		$this->load->model('leave_type','',TRUE);
 	}
 	function index()
@@ -71,6 +75,7 @@ class Setting extends CI_Controller
 		$this->leave_type->delete($id);
 		redirect('setting/leave', 'refresh');
 	}
+<<<<<<< HEAD
 	function account()
 	{
 		$data=array('title'=>'Account','queries'=>$query="",);
@@ -114,4 +119,6 @@ class Setting extends CI_Controller
 		else
 		{$this->session->set_flashdata( 'message', 'Password Did Not Match.' );redirect('setting/editAccount', 'refresh');}
 	}
+=======
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 }

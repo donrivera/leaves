@@ -33,8 +33,13 @@ $(function()
 </form>
 <br/><br/>
 <?="<b><h6>".count($queries)."&nbsp;Record/s Found</h6></b>";?>
+<<<<<<< HEAD
 <p class="iconPrint"><a href="<?=base_url()?>report/printExcel/<?=$opt?>/<?=$key?>"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
 <? #$this->session->set_userdata('query',$this->db->last_query());?> 
+=======
+<p class="iconPrint"><a href="<?=base_url()?>report/printExcel"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
+<? $this->session->set_userdata('query',$this->db->last_query());?> 
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 <table class="tablesorter">
 <thead> 
 	<tr>

@@ -81,7 +81,10 @@
 					<li class="active"><a href="#">Settings</a>
 						<ul>
 							<li><a href="<?=base_url()?>setting/leave">Leave</a></li>
+<<<<<<< HEAD
 							<li><a href="<?=base_url()?>setting/editAccount">Account</a></li>
+=======
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 						</ul>
 					</li>
 				</ul>

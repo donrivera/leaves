@@ -30,7 +30,11 @@ div.ui-datepicker{
 					</tr>
 					<tr>
 						<td>Days Per Year:</td>
+<<<<<<< HEAD
 						<td><? if($q->code=='VL'): echo "N/A";?><? else:?><input type="text" name="days" value="<?=$q->days?>"/><?endif;?></td>
+=======
+						<td><input type="text" name="days" value="<?=$q->days?>"/></td>
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 					</tr>
 					<tr>
 						<td></td>

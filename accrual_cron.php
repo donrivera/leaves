@@ -20,11 +20,27 @@ class Connection
 			default:	{echo "Leave Code Not in List....<BR/>";}break;
 		}
 	}
+<<<<<<< HEAD
+=======
+	public function getConnection() 
+	{return $this->mysql_connection;}
+	function updateBalance($emp_id,$days,$code)
+	{
+		switch($code)
+		{
+			case 'VL':	{mysql_query("UPDATE leave_balance SET balance= balance + $days  WHERE employee_id='$emp_id' AND leave_code='$code'");}break;
+			case 'SL':	{mysql_query("UPDATE leave_balance SET balance= $days  WHERE employee_id='$emp_id' AND leave_code='$code'");}break;
+			case 'UL':	{mysql_query("UPDATE leave_balance SET balance= $days  WHERE employee_id='$emp_id' AND leave_code='$code'");}break;
+			default:	{echo "Leave Code Not in List....<BR/>";}break;
+		}
+	}
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 	function accrual_history($emp_id,$code,$forfeit="",$remarks="")
 	{mysql_query("INSERT INTO accrual_history(employee_id,leave_code,forfeit,remarks,date,year) VALUES('".$emp_id."','".$code."','".$forfeit."','".$remarks."','".date('Y-m-d G:i:s')."','".date('Y')."')");}
 	function insertBalance($emp_id,$code,$balance)
 	{mysql_query("INSERT INTO leave_balance(employee_id,leave_code,balance) VALUES('".$emp_id."','".$code."','".$balance."')");}
 	function getBalancePerCode($code)
+<<<<<<< HEAD
 	{
 		$sql=mysql_query("SELECT days FROM leave_type WHERE code='".$code."'");
 		while($row = mysql_fetch_array($sql))
@@ -33,6 +49,16 @@ class Connection
 	}
 	function getEmployeeBalance($emp_id,$code)
 	{
+=======
+	{
+		$sql=mysql_query("SELECT days FROM leave_type WHERE code='".$code."'");
+		while($row = mysql_fetch_array($sql))
+		{$days=$row['days'];}
+		return $days;
+	}
+	function getEmployeeBalance($emp_id,$code)
+	{
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 		$current_balance=mysql_query("SELECT balance FROM leave_balance WHERE employee_id='".$emp_id."' AND leave_code='".$code."'");
 		while($row=mysql_fetch_array($current_balance))
 		{$balance=$row['balance'];}
@@ -67,8 +93,14 @@ class Connection
 		return $accrual;
 	}
 }
+<<<<<<< HEAD
 
 Connection::Dbase();
+=======
+Connection::getInstance();
+#mysql_connect('','','') or die('Cannot connect to database...');
+#mysql_select_db('') or die('Cannot select database...');
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 #$sl_accrual_days=20;
 $result = mysql_query("SELECT * FROM employees");
 while($row = mysql_fetch_array($result))

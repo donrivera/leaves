@@ -66,6 +66,10 @@ Class Employee extends CI_Model
 	}
 	function search($option,$key)
 	{	
+<<<<<<< HEAD
+=======
+		
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 		switch($option)
 		{
 			case 'name':	{$sql="SELECT * FROM employees WHERE LOWER(first_name) LIKE '%$key%' OR LOWER(last_name) LIKE '%$key%'";}break;

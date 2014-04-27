@@ -32,8 +32,13 @@ $(function()
 </form>
 <br/><br/>
 <?="<b><h6>".count($queries)."&nbsp;Record/s Found</h6></b>";?>
+<<<<<<< HEAD
 <p class="iconPrint"><a href="<?=base_url()?>leave/printExcel/<?=$opt?>/<?=$key?>"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
 <? #$this->session->set_userdata('query',$this->db->last_query());?> 
+=======
+<p class="iconPrint"><a href="<?=base_url()?>leave/printExcel"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
+<? $this->session->set_userdata('query',$this->db->last_query());?> 
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 <table class="tablesorter">
 <thead> 
 	<tr>
@@ -67,8 +72,13 @@ $(function()
 		
 		<td align="center">
 			<h6>
+<<<<<<< HEAD
 				<a href="<?=base_url()?>leave/edit/<?=$q->trans_id?>"><img src="<?=base_url()?>public/images/edit.png" title="Edit"/></a>
 				<a href="<?=base_url()?>leave/cancel/<?=$q->trans_id?>" onclick="return confirm('Are you sure you want to cancel this record ?')"><img src="<?=base_url()?>public/images/delete.png" title="Delete"/></a>
+=======
+				<a href="<?=base_url()?>leave/edit/<?=$q->trans_id?>">Edit</a>
+				<a href="<?=base_url()?>leave/cancel/<?=$q->trans_id?>" onclick="return confirm('Are you sure you want to cancel this record ?')">Cancel</a>
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 			</h6>
 		</td>
 		

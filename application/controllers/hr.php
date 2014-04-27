@@ -100,16 +100,25 @@ class Hr extends CI_Controller
 		$option=$this->input->post('search');
 		$key=$this->input->post('key');
 		$query=$this->employee->search($option,$key)->result();
+<<<<<<< HEAD
 		$data=array('title'=>'Employees','queries'=>$query,'opt'=>$option,'key'=>$key);
+=======
+		$data=array('title'=>'Employees','queries'=>$query,);
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 		$this->template->load('hr', '/hr/search', $data);
 	}
 	function printExcel()
 	{	
+<<<<<<< HEAD
 		$opt=$this->uri->segment(3);
 		$key=$this->uri->segment(4);
 		if(!empty($opt)||!empty($key))
 		{$query=$this->employee->search($opt,$key)->result();}
 		else{$query=$this->employee->viewEmp()->result();}
+=======
+		$q=$this->session->userdata('query');
+		$query=$this->db->query($q)->result();
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 		$data=array('title'=>'Employees','queries'=>$query,);
 		$this->template->load('plain', '/hr/excel', $data);
 	}

@@ -10,8 +10,13 @@ $(function()
 		.tablesorterPager({container: $("#pager"),size:5});
 });
 </script>
+<<<<<<< HEAD
 <a href="<?=base_url()?>setting/addLeave"><img src="<?=base_url()?>public/images/leave.png" title="Add Leave" height="25" width="25"/>Add Leave</a>	
 <br/><br/>
+=======
+<a href="<?=base_url()?>setting/addLeave"><h6>Add Leave</h6></a>	
+<br/>
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 <?="<b><h6>".count($queries)."&nbsp;Record/s Found</h6></b>";?>
 <br/>
 <table class="tablesorter">
@@ -36,8 +41,13 @@ $(function()
 		<td align="center"><h6><?=($q->code=='VL'?'N/A':$q->days)?></h6></td>
 		<td align="center">
 			<h6>
+<<<<<<< HEAD
 				<a href="<?=base_url()?>setting/editLeave/<?=$q->id?>"><img src="<?=base_url()?>public/images/edit.png" title="Edit"/></a>
 				<a href="<?=base_url()?>setting/deleteLeave/<?=$q->id?>" onclick="return confirm('Are you sure you want to cancel this record ?')"><img src="<?=base_url()?>public/images/delete.png" title="Delete"/></a>
+=======
+				<a href="<?=base_url()?>setting/editLeave/<?=$q->id?>">Edit</a>
+				<a href="<?=base_url()?>setting/deleteLeave/<?=$q->id?>" onclick="return confirm('Are you sure you want to cancel this record ?')">Delete</a>
+>>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 			</h6>
 		</td>
 		
