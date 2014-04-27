@@ -95,11 +95,7 @@ Class Leave_transaction extends CI_Model
 	}
 	function duplicate($emp_id,$start,$end)
 	{
-<<<<<<< HEAD
 		$sql="SELECT * FROM leave_transaction WHERE status='active' AND employee_id='$emp_id' AND (('".$start."' BETWEEN start AND end) OR ('".$end."' BETWEEN start AND end)) ";
-=======
-		$sql="SELECT * FROM leave_transaction WHERE employee_id='$emp_id' AND (('".$start."' BETWEEN start AND end) OR ('".$end."' BETWEEN start AND end)) ";
->>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 		$query=$this->db->query($sql);
 		return $query;
 	}

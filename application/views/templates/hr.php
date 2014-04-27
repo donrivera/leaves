@@ -81,10 +81,7 @@
 					<li class="active"><a href="#">Settings</a>
 						<ul>
 							<li><a href="<?=base_url()?>setting/leave">Leave</a></li>
-<<<<<<< HEAD
 							<li><a href="<?=base_url()?>setting/editAccount">Account</a></li>
-=======
->>>>>>> e00d9e619bd1f3e6c227608012e6f19434c19799
 						</ul>
 					</li>
 				</ul>
@@ -102,7 +99,7 @@
 		<div class="sixteen columns"><?=$body?></div><!-- style="background-color:#E0E0E0;"-->
 		<div class="sixteen columns">
 			<hr/>
-			<footer class="footer"><center><strong>Copyright © 2014 Dar Al Khibra Company<br/>Version 2.2.3</strong></center></footer>
+			<footer class="footer"><center><strong>Copyright © 2014 Dar Al Khibra Company<br/>Version 2.2.3.1</strong></center></footer>
 			</br/>
 		</div>	
 	</div><!-- container -->
