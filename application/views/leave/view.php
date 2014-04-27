@@ -11,10 +11,9 @@ $(function()
 		.tablesorterPager({container: $("#pager"),size:5});
 });
 </script>
-<h6>Leave Transactions</h6>
+<a href="<?=base_url()?>leave"><img src="<?=base_url()?>public/images/leave.png" title="Add Leave" height="25" width="25"/>Add Leave</a>	
 <br/>
-
-<form action="<?=base_url()?>report/search" method="post">
+<form action="<?=base_url()?>leave/search" method="post">
 	<div id="firstBlock">
 	Search:&nbsp;
 	<select name="search" style="width:100px;">
@@ -33,7 +32,7 @@ $(function()
 </form>
 <br/><br/>
 <?="<b><h6>".count($queries)."&nbsp;Record/s Found</h6></b>";?>
-<p class="iconPrint"><a href="<?=base_url()?>report/printExcel"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
+<p class="iconPrint"><a href="<?=base_url()?>leave/printExcel"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
 <? #$this->session->set_userdata('query',$this->db->last_query());?> 
 <table class="tablesorter">
 <thead> 
@@ -46,7 +45,7 @@ $(function()
 		<th align="center">End</th>
 		<th align="center">Days</th>
 		<th align="center">Pay</th>
-		<!--<th align="center">Action</th>-->
+		<th align="center">Action</th>
 	</tr>
 </thead> 
 <tbody> 
@@ -65,14 +64,14 @@ $(function()
 		<td align="center"><h6><?=$q->end?></h6></td>
 		<td align="center"><h6><?=$q->no_days?></h6></td>
 		<td align="center"><h6><?=$q->pay_desc?></h6></td>
-		<!--
+		
 		<td align="center">
 			<h6>
-				<a href="<?=base_url()?>leave/edit/<?=$q->trans_id?>">Edit</a>
-				<a href="<?=base_url()?>leave/cancel/<?=$q->trans_id?>" onclick="return confirm('Are you sure you want to cancel this record ?')">Cancel</a>
+				<a href="<?=base_url()?>leave/edit/<?=$q->trans_id?>"><img src="<?=base_url()?>public/images/edit.png" title="Edit"/></a>
+				<a href="<?=base_url()?>leave/cancel/<?=$q->trans_id?>" onclick="return confirm('Are you sure you want to cancel this record ?')"><img src="<?=base_url()?>public/images/delete.png" title="Delete"/></a>
 			</h6>
 		</td>
-		-->
+		
 	</tr>
 	<?endforeach;?>
 	<? endif;?>

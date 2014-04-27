@@ -1,15 +1,47 @@
 <?php
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'mamamia');
-define('DB_DATABASE', 'leaves');
+/*
+class Connection 
+{
+	private $mysql_connection = NULL;
+	private static $connection = NULL;
+	private $host="localhost";
+	private $user="root";
+	private $pass="mamamia";
+	private $db="leaves";
+	private function __construct() 
+	{
+		$this->mysql_connection = mysql_connect($this->host,$this->user,$this->pass)or die("Error in Connection: ".mysql_error());
+		if($this->mysql_connection){mysql_select_db($this->db) or die("Cannot select database:".mysql_error());}
+	}
+	public static function getInstance() 
+	{
+		if(is_null(Connection::$connection)) 
+		{
+			Connection::$connection = new Connection();
+		}
+		return Connection::$connection;
+	}
+	public function getConnection() 
+	{return $this->mysql_connection;}
+}
+*/
+trait Db
+{
+	private $mysql_connection = NULL;
+	private $user="root";
+	private $pass="mamamia";
+	private $db="leaves";
+	private function __construct() 
+	{
+		$this->mysql_connection = mysql_connect($this->host,$this->user,$this->pass)or die("Error in Connection: ".mysql_error());
+		if($this->mysql_connection){mysql_select_db($this->db) or die("Cannot select database:".mysql_error());}
+	}
+	public function Database() 
+	{return $this->mysql_connection;}
+}
 class Connection
 {
-	function Dbase()
-	{
-		mysql_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD) or die('Cannot connect to database...');
-		mysql_select_db(DB_DATABASE) or die('Cannot select database...');
-	}
+	use Db;
 	function updateBalance($emp_id,$days,$code)
 	{
 		switch($code)
@@ -67,8 +99,9 @@ class Connection
 		return $accrual;
 	}
 }
-
-Connection::Dbase();
+Connection::Database();
+#mysql_connect('','','') or die('Cannot connect to database...');
+#mysql_select_db('') or die('Cannot select database...');
 #$sl_accrual_days=20;
 $result = mysql_query("SELECT * FROM employees");
 while($row = mysql_fetch_array($result))
@@ -97,8 +130,8 @@ while($row = mysql_fetch_array($result))
 				#get outstanding balance
 				$vl_balance=$vl_days + $row['vl_outstanding'];
 				#$sl_balance=$sl_accrual_days + $row['sl_outstanding'];
-				Connection::insertBalance($emp_id,'VL',$vl_balance);
-				Connection::accrual_history($emp_id,'VL',"",$vl_balance." Added VL Balance");
+					#Connection::insertBalance($emp_id,'VL',$vl_balance);
+					#Connection::accrual_history($emp_id,'VL',"",$vl_balance." Added VL Balance");
 				
 				#$sl_current_balance=mysql_query("SELECT balance FROM leave_balance WHERE employee_id='".$emp_id."' AND leave_code='SL'");
 				#while($row_sl_current_balance=mysql_fetch_array($sl_current_balance))
@@ -106,18 +139,18 @@ while($row = mysql_fetch_array($result))
 				
 				$sl_balance=Connection::getEmployeeBalance($emp_id,'SL');
 				$ul_balance=Connection::getEmployeeBalance($emp_id,'UL');
-				Connection::accrual_history($emp_id,'SL',$sl_balance,"Forfeit SL Balance");
-				Connection::insertBalance($emp_id,'SL',$sl_days);
-				Connection::accrual_history($emp_id,'UL',$ul_balance,"Forfeit UL Balance");
-				Connection::insertBalance($emp_id,'UL',$ul_days);
+					#Connection::accrual_history($emp_id,'SL',$sl_balance,"Forfeit SL Balance");
+					#Connection::insertBalance($emp_id,'SL',$sl_days);
+					#Connection::accrual_history($emp_id,'UL',$ul_balance,"Forfeit UL Balance");
+					#Connection::insertBalance($emp_id,'UL',$ul_days);
 				echo "Inserted Balances:&nbsp;".substr($emp_id,5,8)."<BR/>";
 				
 			}
 			else
 			{	
 				
-				Connection::updateBalance($emp_id,$vl_days,'VL');
-				Connection::accrual_history($emp_id,'VL',"",$vl_days." Added VL Balance");
+					#Connection::updateBalance($emp_id,$vl_days,'VL');
+					#Connection::accrual_history($emp_id,'VL',"",$vl_days." Added VL Balance");
 				
 				#$sl_current_balance=mysql_query("SELECT balance FROM leave_balance WHERE employee_id='".$emp_id."' AND leave_code='SL'");
 				#while($row_sl_current_balance=mysql_fetch_array($sl_current_balance))
@@ -125,10 +158,10 @@ while($row = mysql_fetch_array($result))
 				
 				$sl_balance=Connection::getEmployeeBalance($emp_id,'SL');
 				$ul_balance=Connection::getEmployeeBalance($emp_id,'UL');
-				Connection::accrual_history($emp_id,'SL',$sl_balance,"Forfeit SL Balance");
-				Connection::updateBalance($emp_id,$sl_days,'SL');
-				Connection::accrual_history($emp_id,'UL',$ul_balance,"Forfeit UL Balance");
-				Connection::updateBalance($emp_id,$ul_days,'UL');
+					#Connection::accrual_history($emp_id,'SL',$sl_balance,"Forfeit SL Balance");
+					#Connection::updateBalance($emp_id,$sl_days,'SL');
+					#Connection::accrual_history($emp_id,'UL',$ul_balance,"Forfeit UL Balance");
+					#Connection::updateBalance($emp_id,$ul_days,'UL');
 				echo "Updated Balances:&nbsp;".substr($emp_id,5,8)."<BR/>";
 				
 			}

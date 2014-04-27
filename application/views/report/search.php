@@ -11,7 +11,7 @@ $(function()
 		.tablesorterPager({container: $("#pager"),size:5});
 });
 </script>
-<h6>Leave Transactions</h6>
+<h6>Search Transactions</h6>
 <br/>
 
 <form action="<?=base_url()?>report/search" method="post">
@@ -33,7 +33,7 @@ $(function()
 </form>
 <br/><br/>
 <?="<b><h6>".count($queries)."&nbsp;Record/s Found</h6></b>";?>
-<p class="iconPrint"><a href="<?=base_url()?>report/printExcel"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
+<p class="iconPrint"><a href="<?=base_url()?>report/printExcel/<?=$opt?>/<?=$key?>"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
 <? #$this->session->set_userdata('query',$this->db->last_query());?> 
 <table class="tablesorter">
 <thead> 

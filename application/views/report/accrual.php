@@ -21,7 +21,7 @@ $(function()
 		<th align="center">First Name</th>
 		<th align="center">Last Name</th>
 		<th align="center">Code</th>
-		<th align="center">Forfeit</th>
+		<!--<th align="center">Forfeit</th>-->
 		<th align="center">Remarks</th>
 		<th align="center">Year</th>
 	</tr>
@@ -34,11 +34,11 @@ $(function()
 	<?else:?>
 	<?foreach($queries as $q):?>
 	<tr>
-		<td align="center"><h6><?=substr($q->id,5,7)?></h6></td>
+		<td align="center"><h6><?=substr($q->id,5,8)?></h6></td>
 		<td align="center"><h6><?=$q->first_name?></h6></td>
 		<td align="center"><h6><?=$q->last_name?></h6></td>
 		<td align="center"><h6><?=$q->desc?></h6></td>
-		<td align="center"><h6><?=$q->forfeit?></h6></td>
+		<!--<td align="center"><h6><?=$q->forfeit?></h6></td>-->
 		<td align="center"><h6><?=$q->remarks?></h6></td>
 		<td align="center"><h6><?=$q->year?></h6></td>
 	</tr>

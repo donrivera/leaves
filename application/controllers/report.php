@@ -20,5 +20,22 @@ class Report extends CI_Controller
 		$data=array('title'=>'Reports','queries'=>$query);
 		$this->template->load('hr', '/report/accrual', $data);
 	}
-	
+	function search()
+	{
+		$option=$this->input->post('search');
+		$key=$this->input->post('key');
+		$query=$this->leave_transaction->search($option,$key)->result();
+		$data=array('title'=>'Reports','queries'=>$query,'opt'=>$option,'key'=>$key);
+		$this->template->load('hr', '/report/search', $data);
+	}
+	function printExcel()
+	{	
+		$opt=$this->uri->segment(3);
+		$key=$this->uri->segment(4);
+		if(!empty($opt)||!empty($key))
+		{$query=$this->leave_transaction->search($opt,$key)->result();}
+		else{$query=$this->leave_transaction->view()->result();}
+		$data=array('title'=>'Employees','queries'=>$query,);
+		$this->template->load('plain', '/report/excel', $data);
+	}
 }

@@ -11,8 +11,8 @@ $(function()
 		.tablesorterPager({container: $("#pager"),size:5});
 });
 </script>
-<a href="<?=base_url()?>hr/"><img src="<?=base_url()?>public/images/employee.png" title="Add Employee" height="25" width="25"/>Add Employee</a>	
-<br/>
+<!--<a href="<?=base_url()?>hr/"><h6>Add Employee</h6></a>-->
+<h6>Search Employee</h6><br/>
 <form action="<?=base_url()?>hr/search" method="post">
 	<div id="firstBlock">
 	Search:&nbsp;
@@ -32,7 +32,7 @@ $(function()
 </form>
 <br/><br/>
 <?="<b><h6>".count($queries)."&nbsp;Record/s Found</h6></b>";?>
-<p class="iconPrint"><a href="<?=base_url()?>hr/printExcel"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
+<p class="iconPrint"><a href="<?=base_url()?>hr/printExcel/<?=$opt?>/<?=$key?>"><img src="<?=base_url()?>public/images/printButton.png"/></a></p>
 <? #$this->session->set_userdata('query',$this->db->last_query());?> 
 <table class="tablesorter"> 
 <thead> 
@@ -115,8 +115,10 @@ $(function()
 		?></h6>
 		</td>
 		<td align="center">
+		<h6>
 			<a href="<?=base_url()?>hr/editEmpLeave/<?=$q->id?>"><img src="<?=base_url()?>public/images/edit.png" title="Edit"/></a>
 			<a href="<?=base_url()?>hr/deleteEmpLeave/<?=$q->id?>" onclick="return confirm('Are you sure you want to delete this record ?')"><img src="<?=base_url()?>public/images/delete.png" title="Delete"/></a>
+		</h6>
 		</td>
 	</tr>
 	<?php endforeach;?>

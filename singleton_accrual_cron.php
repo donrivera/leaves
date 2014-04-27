@@ -1,15 +1,27 @@
 <?php
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'mamamia');
-define('DB_DATABASE', 'leaves');
-class Connection
+class Connection 
 {
-	function Dbase()
+	private $mysql_connection = NULL;
+	private static $connection = NULL;
+	private $host="localhost";
+	private $user="root";
+	private $pass="mamamia";
+	private $db="leaves";
+	private function __construct() 
 	{
-		mysql_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD) or die('Cannot connect to database...');
-		mysql_select_db(DB_DATABASE) or die('Cannot select database...');
+		$this->mysql_connection = mysql_connect($this->host,$this->user,$this->pass)or die("Error in Connection: ".mysql_error());
+		if($this->mysql_connection){mysql_select_db($this->db) or die("Cannot select database:".mysql_error());}
 	}
+	public static function getInstance() 
+	{
+		if(is_null(Connection::$connection)) 
+		{
+			Connection::$connection = new Connection();
+		}
+		return Connection::$connection;
+	}
+	public function getConnection() 
+	{return $this->mysql_connection;}
 	function updateBalance($emp_id,$days,$code)
 	{
 		switch($code)
@@ -67,8 +79,9 @@ class Connection
 		return $accrual;
 	}
 }
-
-Connection::Dbase();
+Connection::getInstance();
+#mysql_connect('','','') or die('Cannot connect to database...');
+#mysql_select_db('') or die('Cannot select database...');
 #$sl_accrual_days=20;
 $result = mysql_query("SELECT * FROM employees");
 while($row = mysql_fetch_array($result))

@@ -72,7 +72,7 @@
 		<div class="sixteen columns"><?=$body?></div>
 		<div class="sixteen columns">
 			<hr/>
-			<footer class="footer"><center><strong>Copyright © 2014 Dar Al Khibra Company<br/>Version 2.2.2</strong></center></footer>
+			<footer class="footer"><center><strong>Copyright © 2014 Dar Al Khibra Company<br/>Version 2.2.3</strong></center></footer>
 			</br/>
 		</div>	
 	</div><!-- container -->

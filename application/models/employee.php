@@ -17,6 +17,7 @@ Class Employee extends CI_Model
 							'num_of_days'      => $num_of_days,
 							'vl_outstanding'   => $vl_outstanding,
 							'sl_outstanding'   => $sl_outstanding,
+							'ul_outstanding'   => $ul_outstanding,
 							'date_added'	   => $this->date_added
 						);
 						
@@ -25,7 +26,7 @@ Class Employee extends CI_Model
 	}
 	function viewEmp()
 	{
-		$sql="SELECT * FROM employees LIMIT 0,10";
+		$sql="SELECT * FROM employees";
 		$query=$this->db->query($sql);
 		return $query;
 	}
@@ -57,10 +58,23 @@ Class Employee extends CI_Model
 							'start_date'     		=> $start_date,
 							'num_of_days'          	=> $num_of_days,
 							'vl_outstanding'   		=> $vl_outstanding,
-							'sl_outstanding'   		=> $sl_outstanding
+							'sl_outstanding'   		=> $sl_outstanding,
+							'ul_outstanding'   		=> $ul_outstanding
 						);
 						
 		return $this->db->update('employees', $dataArr, array('id' => $id));
+	}
+	function search($option,$key)
+	{	
+		switch($option)
+		{
+			case 'name':	{$sql="SELECT * FROM employees WHERE LOWER(first_name) LIKE '%$key%' OR LOWER(last_name) LIKE '%$key%'";}break;
+			case 'id':		{$sql="SELECT * FROM employees WHERE id LIKE '%$key%'";}break;
+			default:		{$sql="SELECT * FROM employees WHERE id LIKE '%$key%' OR first_name LIKE '%$key%' OR last_name LIKE '%$key%'";}break;
+		}
+		$query=$this->db->query($sql);
+		return $query;
+		
 	}
 	function deleteEmpLeave($id)
 	{
