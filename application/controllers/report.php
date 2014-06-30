@@ -5,6 +5,7 @@ class Report extends CI_Controller
     {
         parent::__construct();
         $this->load->library('template');
+		($this->is_logged_in()==FALSE)?redirect('home', 'refresh'):"";
 		$this->load->model('leave_transaction','',TRUE);
 		$this->load->model('accrual','',TRUE);
 	}
@@ -37,5 +38,10 @@ class Report extends CI_Controller
 		else{$query=$this->leave_transaction->view()->result();}
 		$data=array('title'=>'Employees','queries'=>$query,);
 		$this->template->load('plain', '/report/excel', $data);
+	}
+	function is_logged_in()
+    {
+        $user = $this->session->userdata('logged_in');
+        return $user;
 	}
 }

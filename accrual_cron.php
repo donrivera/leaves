@@ -1,8 +1,8 @@
 <?php
 define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'berlitzk_myLeave');
-define('DB_PASSWORD', 'B3rl1tz-k$@');
-define('DB_DATABASE', 'berlitzk_myLeave');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'mamamia');
+define('DB_DATABASE', 'leaves');
 
 class Connection
 {
@@ -131,4 +131,8 @@ while($row = mysql_fetch_array($result))
 	else{echo "Exit Accrual...<BR/>";}
 }
 Connection::accrual_history("001",'CJ',0,"Batch Process");
+$from="support@berlitz-ksa.com";
+$subject="Leaves Accrual";
+$message="Script Run on ".date('Y-m-d G:i:s');
+mail("don@berlitz-ksa.com",$subject,$message,"From: $from\n");
 ?>

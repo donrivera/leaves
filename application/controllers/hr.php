@@ -5,6 +5,7 @@ class Hr extends CI_Controller
     {
         parent::__construct();
         $this->load->library('template');
+		($this->is_logged_in()==FALSE)?redirect('home', 'refresh'):"";
 		//$this->load->model('user','',TRUE);
 		$this->load->model('employee','',TRUE);
 		$this->load->model('leave_balance','',TRUE);
@@ -29,7 +30,7 @@ class Hr extends CI_Controller
 			redirect('hr', 'refresh');
 		}
 		else
-		{
+		{	
 			$dtl = array(
 							//'employee_id'			=> $this->input->post('emp_id'),
 							'first_name'      	 	=> $this->input->post('f_name'),
@@ -112,6 +113,11 @@ class Hr extends CI_Controller
 		else{$query=$this->employee->viewEmp()->result();}
 		$data=array('title'=>'Employees','queries'=>$query,);
 		$this->template->load('plain', '/hr/excel', $data);
+	}
+	function is_logged_in()
+    {
+        $user = $this->session->userdata('logged_in');
+        return $user;
 	}
 	function logout()
 	{

@@ -23,22 +23,24 @@ class Home extends CI_Controller
 	public function viewLeave()
 	{	
 		$form=$this->input->post();
-		$name=$this->input->post('emp_name');
+		$id=$this->input->post('emp_name');
 		$start=$this->input->post('start_date');
 		$end=$this->input->post('end_date');
-		if(empty($name) || empty($start) || empty($end))
+		if(empty($id) || empty($start) || empty($end))
 		{
 			$this->session->set_flashdata( 'message', 'Please Complete Fields...' );
 			redirect('home/inquireLeave', 'refresh');
 		}
 		else
 		{	
-			$emp=$this->employee->getIdByFname($name)->row();
+			#$emp=$this->employee->getIdByFname($name)->row();
+			$emp=$this->employee->getEmpId($id)->row();
 			$vl=$this->leave_balance->viewBalance($emp->id,'VL')->row();
 			$sl=$this->leave_balance->viewBalance($emp->id,'SL')->row();
 			$vl_balance=(empty($vl->balance)? 'N/A' : $vl->balance);
 			$sl_balance=(empty($sl->balance)? 'N/A' : $sl->balance);
-			$query=$this->employee->getEmp($name)->result();
+			#$query=$this->employee->getEmp($name)->result();
+			$query=$this->employee->getEmpId($id)->result();
 			$data = array(	'title' => 'View Leave Balance',
 							'queries'=>$query,
 							'form'=>$form,

@@ -5,6 +5,7 @@ class Setting extends CI_Controller
     {
         parent::__construct();
         $this->load->library('template');
+		($this->is_logged_in()==FALSE)?redirect('home', 'refresh'):"";
 		$this->load->model('user','',TRUE);
 		$this->load->model('leave_type','',TRUE);
 	}
@@ -115,5 +116,9 @@ class Setting extends CI_Controller
 		else
 		{$this->session->set_flashdata( 'message', 'Password Did Not Match.' );redirect('setting/editAccount', 'refresh');}
 	}
-
+	function is_logged_in()
+    {
+        $user = $this->session->userdata('logged_in');
+        return $user;
+	}
 }
